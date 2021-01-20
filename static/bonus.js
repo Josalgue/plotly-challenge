@@ -1,18 +1,17 @@
-/**
- * BONUS Solution
- * */
-function buildGauge(wfreq) {
-  // Enter the washing frequency between 0 and 180
-  var level = parseFloat(wfreq) * 20;
+// BONUS
 
-  // Trig to calc meter point
+// Enter the washing frequency between 0 and 180
+function buildGauge(wfreq) {
+  var level = parseFloat(wfreq) * 20;
+  
+  
   var degrees = 180 - level;
   var radius = 0.5;
   var radians = (degrees * Math.PI) / 180;
   var x = radius * Math.cos(radians);
   var y = radius * Math.sin(radians);
 
-  // Path: may have to change to create a better triangle
+  // Define paths and space to create triangle
   var mainPath = "M -.0 -0.05 L .0 0.05 L ";
   var pathX = String(x);
   var space = " ";
@@ -20,6 +19,7 @@ function buildGauge(wfreq) {
   var pathEnd = " Z";
   var path = mainPath.concat(pathX, space, pathY, pathEnd);
 
+  // Define style attributes and general gauge structure 
   var data = [
     {
       type: "scatter",
@@ -39,15 +39,15 @@ function buildGauge(wfreq) {
       textposition: "inside",
       marker: {
         colors: [
-          "rgba(0, 105, 11, .5)",
-          "rgba(10, 120, 22, .5)",
-          "rgba(14, 127, 0, .5)",
-          "rgba(110, 154, 22, .5)",
-          "rgba(170, 202, 42, .5)",
-          "rgba(202, 209, 95, .5)",
-          "rgba(210, 206, 145, .5)",
-          "rgba(232, 226, 202, .5)",
-          "rgba(240, 230, 215, .5)",
+          "rgba(0, 230, 64, 1)",
+          "rgba(46, 204, 113, 1)",
+          "rgba(123, 239, 178, 1)",          
+          "rgba(134, 226, 213, 1)",
+          "rgba(252, 214, 112, 1)",
+          "rgba(250, 190, 88, 1)",
+          "rgba(242, 120, 75, 1)",
+          "rgba(241, 90, 34, 1)",
+          "rgba(240, 52, 52, 1)",
           "rgba(255, 255, 255, 0)"
         ]
       },
@@ -87,6 +87,7 @@ function buildGauge(wfreq) {
     }
   };
 
+// Define and render Gauge plot
   var GAUGE = document.getElementById("gauge");
   Plotly.newPlot(GAUGE, data, layout);
 }
